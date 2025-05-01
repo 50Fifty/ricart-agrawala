@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Ricart-Agrawala Algorithm Simulation
+
+A web-based simulation demonstrating the Ricart-Agrawala distributed mutual exclusion algorithm. Built with Next.js and Tailwind CSS, it lets you configure nodes, manually request access to the critical section, and visualize message passing (requests and replies) in real time.
+
+## Demo
+
+![Simulation](./simulation.png)
+
+## Features
+
+- Adjustable number of nodes (2–6)
+- Visual queue display of pending requests per node
+- Checkbox-based replies tracker
+- Critical section timer visualization
+- Live message log (requests/replies)
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js (>=14)
+- npm or Yarn
+
+### Installation
+
+```bash
+git clone https://github.com/yourusername/ricart-agrawala.git
+cd ricart-agrawala
+npm install
+# or
+yarn install
+```
+
+### Running the Development Server
 
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000 in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Usage
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Select the number of nodes.
+2. Start the simulation.
+3. Click "Request Critical Section" on any node.
+4. Observe the queue, reply checkboxes, and message log.
+5. Watch nodes enter and exit the critical section.
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```text
+app/
+  components/
+    Node.tsx            # Node UI and Ricart-Agrawala logic
+    MessageVisualizer.tsx  # Message log display
+    Simulation.tsx      # Simulation controller and layout
+  page.tsx             # Landing page
+  globals.css          # Tailwind CSS imports and custom styles
+next.config.mjs       # Next.js export config
+tailwind.config.ts    # Tailwind CSS config
+...                   # Other config and font files
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Customization
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Modify Tailwind theme in `tailwind.config.ts`
+- Extend algorithm timing and behavior in `Node.tsx`
