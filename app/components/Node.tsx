@@ -229,19 +229,25 @@ export const Node: React.FC<NodeProps> = ({ id, totalNodes, onSendMessage, messa
             ))
           )}
         </div>
+        {/* Replace replies section with checkboxes */}
         <h4 className="text-sm font-medium mb-1 mt-3">
-          Replies Received {repliesReceived.length}/{totalNodes - 1}:
+          Replies Received ({`${repliesReceived.length}/${totalNodes - 1}`}):
         </h4>
-        <div className="bg-white dark:bg-gray-800 rounded p-2 h-20 overflow-y-auto text-xs">
-          {repliesReceived.length === 0 ? (
-            <p className="text-gray-500 dark:text-gray-400 text-center">No replies yet</p>
-          ) : (
-            repliesReceived.map((nodeId, idx) => (
-              <div key={idx} className="mb-1">
-                Reply from Node {nodeId + 1}
-              </div>
-            ))
-          )}
+        <div className="flex flex-wrap space-x-4">
+          {Array.from({ length: totalNodes }, (_, nodeId) => nodeId)
+            .filter((nodeId) => nodeId !== id)
+            .map((nodeId) => (
+              <label key={nodeId} className="flex items-center space-x-1 text-xs">
+                <input
+                  type="checkbox"
+                  readOnly
+                  tabIndex={-1}
+                  checked={repliesReceived.includes(nodeId)}
+                  className="w-5 h-5 border-2 rounded border-gray-400 bg-white accent-blue-600 pointer-events-none cursor-not-allowed focus:outline-none focus:ring-0"
+                />
+                <span>Node {nodeId + 1}</span>
+              </label>
+            ))}
         </div>
       </div>
     </div>
