@@ -24,7 +24,7 @@ A web-based simulation demonstrating the Ricart-Agrawala distributed mutual excl
 ### Installation
 
 ```bash
-git clone https://github.com/yourusername/ricart-agrawala.git
+git clone https://github.com/50Fifty/ricart-agrawala.git
 cd ricart-agrawala
 npm install
 # or
