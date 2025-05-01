@@ -3,10 +3,9 @@ import { Message } from "./Node";
 
 interface MessageVisualizerProps {
   messages: Message[];
-  nodeCount: number;
 }
 
-export const MessageVisualizer: React.FC<MessageVisualizerProps> = ({ messages, nodeCount }) => {
+export const MessageVisualizer: React.FC<MessageVisualizerProps> = ({ messages }) => {
   return (
     <div className="border rounded-lg p-4 shadow-md bg-white dark:bg-gray-800 mt-6">
       <h3 className="text-lg font-bold mb-3">Message Log</h3>

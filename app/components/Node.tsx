@@ -12,7 +12,6 @@ interface NodeProps {
   id: number;
   totalNodes: number;
   onSendMessage: (message: Message) => void;
-  receiveMessage: (message: Message) => void;
   messages: Message[];
   simulationRunning: boolean;
 }
@@ -23,9 +22,7 @@ export const Node: React.FC<NodeProps> = ({ id, totalNodes, onSendMessage, messa
   const [repliesReceived, setRepliesReceived] = useState<number[]>([]);
   const [timestamp, setTimestamp] = useState<number>(0);
   const [replyCount, setReplyCount] = useState<number>(0);
-  const [criticalSectionTime, setCriticalSectionTime] = useState<number>(0);
   const [remainingTime, setRemainingTime] = useState<number>(0);
-  const [lastRequestTime, setLastRequestTime] = useState<number>(0);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const queueRef = useRef<number[]>([]);
@@ -95,7 +92,6 @@ export const Node: React.FC<NodeProps> = ({ id, totalNodes, onSendMessage, messa
       setState("RELEASED");
       setQueue([]);
       setReplyCount(0);
-      setCriticalSectionTime(0);
       setRemainingTime(0);
 
       if (timerRef.current) {
@@ -127,7 +123,6 @@ export const Node: React.FC<NodeProps> = ({ id, totalNodes, onSendMessage, messa
 
       // Use time in critical section for visualization
       const timeInCriticalSection = Math.floor(Math.random() * 4000) + 4000;
-      setCriticalSectionTime(timeInCriticalSection);
       setRemainingTime(Math.ceil(timeInCriticalSection / 1000));
 
       // Set up interval to update remaining time
@@ -163,9 +158,6 @@ export const Node: React.FC<NodeProps> = ({ id, totalNodes, onSendMessage, messa
 
         // Clear the queue after sending all replies
         setQueue([]);
-
-        // Add a cooldown period for simulation purposes
-        setLastRequestTime(Date.now());
 
         // Clear interval if it's still running
         if (intervalRef.current) {

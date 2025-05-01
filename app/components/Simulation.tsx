@@ -85,14 +85,13 @@ export const Simulation: React.FC = () => {
             id={index}
             totalNodes={nodeCount}
             onSendMessage={handleSendMessage}
-            receiveMessage={(msg) => {}}
             messages={messages.filter((m) => m.to === index)}
             simulationRunning={running}
           />
         ))}
       </div>
 
-      <MessageVisualizer messages={messages} nodeCount={nodeCount} />
+      <MessageVisualizer messages={messages} />
     </div>
   );
 };
